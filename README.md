@@ -12,11 +12,11 @@ func main() {
         "http://legendtkl.com/2017/04/02/golang-alloc/",
         "http://legendtkl.com/2017/03/21/malloc-os-knowledge/",
         "http://legendtkl.com/2016/12/31/git-good-practice-gitflow/"}
-    bloomFilter.Add([]byte(url[0]))
-    bloomFilter.Add([]byte(url[1]))
-    bloomFilter.Add([]byte(url[2]))
+    bloomFilter.Insert([]byte(url[0]))
+    bloomFilter.Insert([]byte(url[1]))
+    bloomFilter.Insert([]byte(url[2]))
 
-    res, _ := bloomFilter.Get([]byte(url[3]))
+    res, _ := bloomFilter.Lookup([]byte(url[3]))
     fmt.Println(res)
 }
 ```

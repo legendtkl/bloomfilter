@@ -51,7 +51,7 @@ func (filter *BloomFilter) RandomKeys(keyLength int) {
 }
 
 // Add add an item
-func (filter *BloomFilter) Add(msg []byte) error {
+func (filter *BloomFilter) Insert(msg []byte) error {
 	for _, v := range filter.keys {
 		val := filter.hashFunc(msg, v)
 		filter.bitMap.SetOne(val % filter.m)
@@ -60,7 +60,7 @@ func (filter *BloomFilter) Add(msg []byte) error {
 }
 
 // Get get the item, if exist, return true; else, return false
-func (filter *BloomFilter) Get(msg []byte) (bool, error) {
+func (filter *BloomFilter) Lookup(msg []byte) (bool, error) {
 	for _, v := range filter.keys {
 		val := filter.hashFunc(msg, v)
 		if x, _ := filter.bitMap.GetPosition(val % filter.m); x != 1 {

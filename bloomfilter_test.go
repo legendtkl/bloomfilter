@@ -14,18 +14,18 @@ func TestBloomFilter(t *testing.T) {
 	bloomFilter.RandomKeys(5)
 
 	for i := 0; i < 100; i++ {
-		bloomFilter.Add(testStr[i])
+		bloomFilter.Insert(testStr[i])
 	}
 
 	for i := 0; i < 100; i++ {
-		exist, _ := bloomFilter.Get(testStr[i])
+		exist, _ := bloomFilter.Lookup(testStr[i])
 		if exist == false {
 			t.Error("Exist Key Test Failed.", i)
 		}
 	}
 
 	for i := 100; i < 200; i++ {
-		exist, _ := bloomFilter.Get(testStr[i])
+		exist, _ := bloomFilter.Lookup(testStr[i])
 		if exist != false {
 			t.Error("Not Exist Key Test Failed.", i)
 		}
